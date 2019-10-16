@@ -54,13 +54,22 @@ class _MyHomePageState extends State<MyHomePage> {
   var _livePosition;
   var _geoStatus;
 
+  bool _modoAviao = false;
+  bool _bluetooth = false;
+  bool _wifiStatus = false;
+  bool _wifiRede = false;
+  bool _hotSpotPresenca = false;
+  bool _hotSpotInternet = false;
+
   List _dataList = [];
+
+  StreamSubscription<Position> positionStream;
 
   @override
   void initState() {
     super.initState();
 
-    _getData().then((data){
+    _getData().then((data) {
       _dataList = jsonDecode(data);
     });
   }
@@ -104,25 +113,90 @@ class _MyHomePageState extends State<MyHomePage> {
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Text('Posição Atual', style: TextStyle(fontWeight: FontWeight.bold),),
-            if (_currentPosition != null)
-              Text(
-                'Lat: ${_currentPosition.latitude}, Lng: ${_currentPosition.longitude}',
-              ),
-            if (_currentPosition != null) Text('Accuracy: ${_currentPosition.accuracy}'),
-            if (_currentPosition != null) Text('Heading: ${_currentPosition.heading}'),
-            if (_currentPosition != null) Text('Speed: ${_currentPosition.speed}'),
-            if (_currentPosition != null) Text('Speed Accuracy: ${_currentPosition.speedAccuracy}'),
-            if (_currentPosition != null) Text('Altitude: ${_currentPosition.altitude}'),
-            if (_currentPosition != null) Text('TimeStamp ${_currentPosition.timestamp}'),
+            SwitchListTile(
+              title: Text("Modo Avião"),
+              secondary: Icon(Icons.flight),
+              value: _modoAviao,
+              onChanged: (bool value) {
+                setState(() {
+                  _modoAviao = value;
+                });
+                print("Modo Avião " + _modoAviao.toString());
+              },
+            ),
+            SwitchListTile(
+              title: Text("Bluetooth"),
+              secondary: Icon(Icons.bluetooth),
+              value: _bluetooth,
+              onChanged: (bool value) {
+                setState(() {
+                  _bluetooth = value;
+                });
+                print("Bluetooth " + _bluetooth.toString());
+              },
+            ),
+            SwitchListTile(
+              title: Text("Wifi Status Int."),
+              secondary: Icon(Icons.wifi_lock),
+              value: _wifiStatus,
+              onChanged: (bool value) {
+                setState(() {
+                  _wifiStatus = value;
+                });
+                print("Bluetooth " + _wifiStatus.toString());
+              },
+            ),
+            SwitchListTile(
+              title: Text("Wifi Rede Conectada"),
+              secondary: Icon(Icons.wifi),
+              value: _wifiRede,
+              onChanged: (bool value) {
+                setState(() {
+                  _wifiRede = value;
+                });
+                print("WifiRede " + _wifiRede.toString());
+              },
+            ),
+            SwitchListTile(
+              title: Text("Hotspot Presença"),
+              secondary: Icon(Icons.phone_iphone),
+              value: _hotSpotPresenca,
+              onChanged: (bool value) {
+                setState(() {
+                  _hotSpotPresenca = value;
+                });
+                print("Hotspot Presença " + _hotSpotPresenca.toString());
+              },
+            ),
+            SwitchListTile(
+              title: Text("Hotspot Internet"),
+              secondary: Icon(Icons.phonelink_ring),
+              value: _hotSpotInternet,
+              onChanged: (bool value) {
+                setState(() {
+                  _hotSpotInternet = value;
+                });
+                print("Hotspot Internet " + _hotSpotInternet.toString());
+              },
+            ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 RaisedButton(
-                  child: Text('get'),
-                  onPressed: _getCurrentLocation(3),
+                  child: Text('Iniciar'),
+                  onPressed: () => _getLiveLocation(3),
+                  color: Colors.blueAccent,
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                RaisedButton(
+                  child: Text('Parar'),
+                  onPressed: _destroyLiveLocationSubscribe,
+                  color: Colors.red,
                 ),
                 // RaisedButton(
                 //   child: Text('Best'),
@@ -134,15 +208,37 @@ class _MyHomePageState extends State<MyHomePage> {
                 // ),
               ],
             ),
-            SizedBox(height: 80,),
-            // Text('Live Position', style: TextStyle(fontWeight: FontWeight.bold),),
-            // if(_livePosition != null) Text('Lat: ${_livePosition.latitude.toString()}, Lng: ${_livePosition.longitude.toString()}'),
-            // if(_livePosition != null) Text('Accuracy: ${_livePosition.accuracy}'),
-            // if(_livePosition != null) Text('Heading: ${_livePosition.heading}'),
-            // if(_livePosition != null) Text('Speed: ${_livePosition.speed}'),
-            // if(_livePosition != null) Text('Speed Accuracy: ${_livePosition.speedAccuracy}'),
-            // if(_livePosition != null) Text('Altitude: ${_livePosition.altitude}'),
-            // if(_livePosition != null) Text('TimeStamp ${_livePosition.timestamp}'),
+            // Text(
+            //   'Posição Atual',
+            //   style: TextStyle(fontWeight: FontWeight.bold),
+            // ),
+            // if (_currentPosition != null)
+            //   Text(
+            //     'Lat: ${_currentPosition.latitude}, Lng: ${_currentPosition.longitude}',
+            //   ),
+            // if (_currentPosition != null)
+            //   Text('Accuracy: ${_currentPosition.accuracy}'),
+            // if (_currentPosition != null)
+            //   Text('Heading: ${_currentPosition.heading}'),
+            // if (_currentPosition != null)
+            //   Text('Speed: ${_currentPosition.speed}'),
+            // if (_currentPosition != null)
+            //   Text('Speed Accuracy: ${_currentPosition.speedAccuracy}'),
+            // if (_currentPosition != null)
+            //   Text('Altitude: ${_currentPosition.altitude}'),
+            // if (_currentPosition != null)
+            //   Text('TimeStamp ${_currentPosition.timestamp}'),
+            // SizedBox(
+            //   height: 80,
+            // ),
+            Text('Live Position', style: TextStyle(fontWeight: FontWeight.bold),),
+            if(_livePosition != null) Text('Lat: ${_livePosition.latitude.toString()}, Lng: ${_livePosition.longitude.toString()}'),
+            if(_livePosition != null) Text('Accuracy: ${_livePosition.accuracy}'),
+            if(_livePosition != null) Text('Heading: ${_livePosition.heading}'),
+            if(_livePosition != null) Text('Speed: ${_livePosition.speed}'),
+            if(_livePosition != null) Text('Speed Accuracy: ${_livePosition.speedAccuracy}'),
+            if(_livePosition != null) Text('Altitude: ${_livePosition.altitude}'),
+            if(_livePosition != null) Text('TimeStamp ${_livePosition.timestamp}'),
             //  Row(
             //    mainAxisAlignment: MainAxisAlignment.center,
             //   children: <Widget>[
@@ -160,13 +256,13 @@ class _MyHomePageState extends State<MyHomePage> {
             //     ),
             //   ],
             // ),
-        //     Text('Status', style: TextStyle(fontWeight: FontWeight.bold),),
-        //     if(_geoStatus != null)
-        //       Text(_geoStatus),
-        //       RaisedButton(
-        //         child: Text('Get Status'),
-        //         onPressed: _getStatus(),
-        //       )
+            //     Text('Status', style: TextStyle(fontWeight: FontWeight.bold),),
+            //     if(_geoStatus != null)
+            //       Text(_geoStatus),
+            //       RaisedButton(
+            //         child: Text('Get Status'),
+            //         onPressed: _getStatus(),
+            //       )
           ],
         ),
       ),
@@ -178,7 +274,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  _getCurrentLocation(int accuracy) {
+  void _getCurrentLocation(int accuracy) {
     print("Apertou o Botão");
     final Geolocator geolocator = Geolocator();
     var locationAccuracy = _setAccuracy(accuracy);
@@ -189,7 +285,6 @@ class _MyHomePageState extends State<MyHomePage> {
       setState(() {
         _currentPosition = position;
         _addList(_currentPosition);
-        _saveData();
       });
     }).catchError((e) {
       print(e);
@@ -197,14 +292,34 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  _getLiveLocation(int accuracy) {
+  void _checkLocation(int accuracy) {
+    print("apertou checklocation");
+    final Geolocator geolocator = Geolocator();
+
+    var locationAccuracy = _setAccuracy(accuracy);
+
+    geolocator
+        .getCurrentPosition(desiredAccuracy: locationAccuracy)
+        .timeout(Duration(seconds: 2))
+        .then((Position position) {
+      setState(() {
+        _currentPosition = position;
+        _addList(_currentPosition);
+      });
+    }).catchError((e) {
+      print(e);
+      _neverSatisfied(e);
+    });
+  }
+
+  void _getLiveLocation(int accuracy) {
     print("Apertou Live Location");
     final Geolocator geolocator = Geolocator();
     var locationAccuracy = _setAccuracy(accuracy);
-    var locationOptions = LocationOptions(
-        accuracy: locationAccuracy, distanceFilter: 5);
+    var locationOptions =
+        LocationOptions(accuracy: locationAccuracy, distanceFilter: 1, timeInterval: 5);
 
-    StreamSubscription<Position> positionStream = geolocator
+    positionStream = geolocator
         .getPositionStream(locationOptions)
         .listen((Position position) {
       setState(() {
@@ -212,6 +327,11 @@ class _MyHomePageState extends State<MyHomePage> {
         _addList(_livePosition);
       });
     });
+  }
+
+  void _destroyLiveLocationSubscribe() {
+    print("cancelando subscribe");
+    positionStream.cancel();
   }
 
   // _getStatus() async {
@@ -258,18 +378,17 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<String> _getData() async {
-    try{
+    try {
       final file = await _getFile();
 
       return file.readAsString();
-    } catch(e) {
+    } catch (e) {
       print("ERROR: " + e);
     }
   }
 
   void _printJson() {
-    _getData().then((data){
-
+    _getData().then((data) {
       print(jsonDecode(data));
     });
   }
@@ -277,48 +396,54 @@ class _MyHomePageState extends State<MyHomePage> {
   void _addList(Position position) {
     Map<String, dynamic> newData = Map();
     setState(() {
-    newData["Lat"] = position.latitude.toString();
-    newData["Lng"] = position.longitude.toString();
-    newData["accuracy"] = position.accuracy.toString();
-    newData["heading"] = position.heading.toString();
-    newData["speed"] = position.speed.toString();
-    newData["speed accuracy"] = position.speedAccuracy.toString();
-    newData["altitude"] = position.altitude.toString();
-    newData["timestamp"] = position.timestamp.toString();
-    _dataList.add(newData);
-    print("Salvo na Lista");
-    _saveData();
+      newData["Modo Avião"] = _modoAviao.toString();
+      newData["Bluetooth"] = _bluetooth.toString();
+      newData["Wifi Status Int."] = _wifiStatus.toString();
+      newData["Wifi Rede Conectada"] = _wifiRede.toString();
+      newData["Hotspot Presença"] = _hotSpotPresenca.toString();
+      newData["Hotspot Internet"] = _hotSpotInternet.toString();
+      newData["Lat"] = position.latitude.toString();
+      newData["Lng"] = position.longitude.toString();
+      newData["accuracy"] = position.accuracy.toString();
+      newData["heading"] = position.heading.toString();
+      newData["speed"] = position.speed.toString();
+      newData["speed accuracy"] = position.speedAccuracy.toString();
+      newData["altitude"] = position.altitude.toString();
+      newData["timestamp"] = position.timestamp.toString();
+      _dataList.add(newData);
+      print("Salvo na Lista");
+      _saveData();
     });
   }
+
   void _resetList() {
     _dataList = [];
   }
 
   Future<void> _neverSatisfied(e) async {
-  return showDialog<void>(
-    context: context,
-    barrierDismissible: false, // user must tap button!
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text('Erro'),
-        content: SingleChildScrollView(
-          child: ListBody(
-            children: <Widget>[
-              Text(e),
-            ],
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Erro'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(e),
+              ],
+            ),
           ),
-        ),
-        actions: <Widget>[
-          FlatButton(
-            child: Text('ok'),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
-      );
-    },
-  );
-}
-
+          actions: <Widget>[
+            FlatButton(
+              child: Text('ok'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 }
