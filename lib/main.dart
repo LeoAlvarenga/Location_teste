@@ -1,7 +1,10 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:path_provider/path_provider.dart';
 
 void main() => runApp(MyApp());
 
@@ -51,6 +54,17 @@ class _MyHomePageState extends State<MyHomePage> {
   var _livePosition;
   var _geoStatus;
 
+  List _dataList = [];
+
+  @override
+  void initState() {
+    super.initState();
+
+    _getData().then((data){
+      _dataList = jsonDecode(data);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -64,6 +78,12 @@ class _MyHomePageState extends State<MyHomePage> {
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text('Location'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.restore_page),
+            onPressed: _resetList,
+          )
+        ],
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
@@ -101,45 +121,45 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 RaisedButton(
-                  child: Text('High'),
-                  onPressed: _getCurrentLocation(1),
-                ),
-                RaisedButton(
-                  child: Text('Best'),
-                  onPressed: _getCurrentLocation(2),
-                ),
-                RaisedButton(
-                  child: Text('BFN'),
+                  child: Text('get'),
                   onPressed: _getCurrentLocation(3),
                 ),
+                // RaisedButton(
+                //   child: Text('Best'),
+                //   onPressed: _getCurrentLocation(2),
+                // ),
+                // RaisedButton(
+                //   child: Text('BFN'),
+                //   onPressed: _getCurrentLocation(3),
+                // ),
               ],
             ),
             SizedBox(height: 80,),
-            Text('Live Position', style: TextStyle(fontWeight: FontWeight.bold),),
-            if(_livePosition != null) Text('Lat: ${_livePosition.latitude.toString()}, Lng: ${_livePosition.longitude.toString()}'),
-            if(_livePosition != null) Text('Accuracy: ${_livePosition.accuracy}'),
-            if(_livePosition != null) Text('Heading: ${_livePosition.heading}'),
-            if(_livePosition != null) Text('Speed: ${_livePosition.speed}'),
-            if(_livePosition != null) Text('Speed Accuracy: ${_livePosition.speedAccuracy}'),
-            if(_livePosition != null) Text('Altitude: ${_livePosition.altitude}'),
-            if(_livePosition != null) Text('TimeStamp ${_livePosition.timestamp}'),
-             Row(
-               mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                RaisedButton(
-                  child: Text('High'),
-                  onPressed: _getLiveLocation(1),
-                ),
-                RaisedButton(
-                  child: Text('Best'),
-                  onPressed: _getLiveLocation(2),
-                ),
-                RaisedButton(
-                  child: Text('BFN'),
-                  onPressed: _getLiveLocation(3),
-                ),
-              ],
-            ),
+            // Text('Live Position', style: TextStyle(fontWeight: FontWeight.bold),),
+            // if(_livePosition != null) Text('Lat: ${_livePosition.latitude.toString()}, Lng: ${_livePosition.longitude.toString()}'),
+            // if(_livePosition != null) Text('Accuracy: ${_livePosition.accuracy}'),
+            // if(_livePosition != null) Text('Heading: ${_livePosition.heading}'),
+            // if(_livePosition != null) Text('Speed: ${_livePosition.speed}'),
+            // if(_livePosition != null) Text('Speed Accuracy: ${_livePosition.speedAccuracy}'),
+            // if(_livePosition != null) Text('Altitude: ${_livePosition.altitude}'),
+            // if(_livePosition != null) Text('TimeStamp ${_livePosition.timestamp}'),
+            //  Row(
+            //    mainAxisAlignment: MainAxisAlignment.center,
+            //   children: <Widget>[
+            //     RaisedButton(
+            //       child: Text('High'),
+            //       onPressed: _getLiveLocation(1),
+            //     ),
+            //     RaisedButton(
+            //       child: Text('Best'),
+            //       onPressed: _getLiveLocation(2),
+            //     ),
+            //     RaisedButton(
+            //       child: Text('BFN'),
+            //       onPressed: _getLiveLocation(3),
+            //     ),
+            //   ],
+            // ),
         //     Text('Status', style: TextStyle(fontWeight: FontWeight.bold),),
         //     if(_geoStatus != null)
         //       Text(_geoStatus),
@@ -151,7 +171,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: null,
+        onPressed: _printJson,
         tooltip: 'Increment',
         child: Icon(Icons.gps_fixed),
       ), // This trailing comma makes auto-formatting nicer for build methods.
@@ -168,9 +188,12 @@ class _MyHomePageState extends State<MyHomePage> {
         .then((Position position) {
       setState(() {
         _currentPosition = position;
+        _addList(_currentPosition);
+        _saveData();
       });
     }).catchError((e) {
       print(e);
+      _neverSatisfied(e);
     });
   }
 
@@ -186,6 +209,7 @@ class _MyHomePageState extends State<MyHomePage> {
         .listen((Position position) {
       setState(() {
         _livePosition = position;
+        _addList(_livePosition);
       });
     });
   }
@@ -218,4 +242,83 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return locationAccuracy;
   }
+
+  Future<File> _getFile() async {
+    final directory = await getApplicationDocumentsDirectory();
+    print("File Path: ${directory.path}/data.json");
+    return File("${directory.path}/data.json");
+  }
+
+  Future<File> _saveData() async {
+    String data = jsonEncode(_dataList);
+
+    final file = await _getFile();
+    print("Salvando no JSON");
+    return file.writeAsString(data);
+  }
+
+  Future<String> _getData() async {
+    try{
+      final file = await _getFile();
+
+      return file.readAsString();
+    } catch(e) {
+      print("ERROR: " + e);
+    }
+  }
+
+  void _printJson() {
+    _getData().then((data){
+
+      print(jsonDecode(data));
+    });
+  }
+
+  void _addList(Position position) {
+    Map<String, dynamic> newData = Map();
+    setState(() {
+    newData["Lat"] = position.latitude.toString();
+    newData["Lng"] = position.longitude.toString();
+    newData["accuracy"] = position.accuracy.toString();
+    newData["heading"] = position.heading.toString();
+    newData["speed"] = position.speed.toString();
+    newData["speed accuracy"] = position.speedAccuracy.toString();
+    newData["altitude"] = position.altitude.toString();
+    newData["timestamp"] = position.timestamp.toString();
+    _dataList.add(newData);
+    print("Salvo na Lista");
+    _saveData();
+    });
+  }
+  void _resetList() {
+    _dataList = [];
+  }
+
+  Future<void> _neverSatisfied(e) async {
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Erro'),
+        content: SingleChildScrollView(
+          child: ListBody(
+            children: <Widget>[
+              Text(e),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          FlatButton(
+            child: Text('ok'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
+
 }
