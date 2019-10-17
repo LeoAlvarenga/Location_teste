@@ -1,0 +1,74 @@
+[
+    {Modo Avião: true, Bluetooth: false, Wifi Status Int.: false, Wifi Rede Conectada: false, Hotspot Presença: false, Hotspot Internet: false, Lat: -12.988664421366243, Lng: -38.49868567037007, accuracy: 65.0, heading: 0.0, speed: -1.0, speed accuracy: -1.0, altitude: 34.5048828125, timestamp: 2019-10-17 16: 51: 14.744Z
+    },
+    {Modo Avião: true, Bluetooth: false, Wifi Status Int.: false, Wifi Rede Conectada: false, Hotspot Presença: false, Hotspot Internet: false, Lat: -12.988664421366243, Lng: -38.49868567037007, accuracy: 65.0, heading: 0.0, speed: -1.0, speed accuracy: -1.0, altitude: 34.5048828125, timestamp: 2019-10-17 16: 51: 14.744Z
+    },
+    {Modo Avião: true, Bluetooth: false, Wifi Status Int.: false, Wifi Rede Conectada: false, Hotspot Presença: false, Hotspot Internet: false, Lat: -12.98865092462556, Lng: -38.49876543370975, accuracy: 65.0, heading: 0.0, speed: -1.0, speed accuracy: -1.0, altitude: 34.24391555786133, timestamp: 2019-10-17 16: 58: 34.668Z
+    },
+    {Modo Avião: true, Bluetooth: false, Wifi Status Int.: false, Wifi Rede Conectada: false, Hotspot Presença: false, Hotspot Internet: false, Lat: -12.98865092462556, Lng: -38.49876543370975, accuracy: 65.0, heading: 0.0, speed: -1.0, speed accuracy: -1.0, altitude: 34.24391555786133, timestamp: 2019-10-17 16: 58: 43.668Z
+    },
+    {Modo Avião: true, Bluetooth: false, Wifi Status Int.: false, Wifi Rede Conectada: false, Hotspot Presença: false, Hotspot Internet: false, Lat: -12.988421872366093, Lng: -38.49703958452517, accuracy: 65.0, heading: 0.0, speed: -1.0, speed accuracy: -1.0, altitude: 32.48939895629883, timestamp: 2019-10-17 17: 08: 40.049Z
+    },
+    {Modo Avião: true, Bluetooth: false, Wifi Status Int.: false, Wifi Rede Conectada: false, Hotspot Presença: false, Hotspot Internet: false, Lat: -12.988421872366093, Lng: -38.49703958452517, accuracy: 65.0, heading: 0.0, speed: -1.0, speed accuracy: -1.0, altitude: 32.48939895629883, timestamp: 2019-10-17 17: 08: 49.049Z
+    },
+    {Modo Avião: true, Bluetooth: false, Wifi Status Int.: false, Wifi Rede Conectada: false, Hotspot Presença: false, Hotspot Internet: false, Lat: -12.988421872366093, Lng: -38.49703958452517, accuracy: 65.0, heading: 0.0, speed: -1.0, speed accuracy: -1.0, altitude: 32.48939895629883, timestamp: 2019-10-17 17: 08: 49.049Z
+    },
+    {Modo Avião: false, Bluetooth: false, Wifi Status Int.: false, Wifi Rede Conectada: false, Hotspot Presença: false, Hotspot Internet: false, Lat: -12.988421872366093, Lng: -38.49703958452517, accuracy: 65.0, heading: 0.0, speed: -1.0, speed accuracy: -1.0, altitude: 32.48939895629883, timestamp: 2019-10-17 17: 08: 49.049Z
+    },
+    {Modo Avião: false, Bluetooth: false, Wifi Status Int.: false, Wifi Rede Conectada: false, Hotspot Presença: false, Hotspot Internet: false, Lat: -12.988421872366093, Lng: -38.49703958452517, accuracy: 65.0, heading: 0.0, speed: -1.0, speed accuracy: -1.0, altitude: 32.48939895629883, timestamp: 2019-10-17 17: 08: 49.049Z
+    },
+    {Modo Avião: false, Bluetooth: false, Wifi Status Int.: false, Wifi Rede Conectada: false, Hotspot Presença: false, Hotspot Internet: false, Lat: -12.988346321586688, Lng: -38.49877876677926, accuracy: 65.0, heading: 0.0, speed: -1.0, speed accuracy: -1.0, altitude: 36.42678451538086, timestamp: 2019-10-17 17: 19: 49.066Z
+    },
+    {Modo Avião: false, Bluetooth: false, Wifi Status Int.: false, Wifi Rede Conectada: false, Hotspot Presença: false, Hotspot Internet: false, Lat: -12.988326107373691, Lng: -38.49883349843351, accuracy: 65.0, heading: 0.0, speed: -1.0, speed accuracy: -1.0, altitude: 36.46873474121094, timestamp: 2019-10-17 17: 19: 57.281Z
+    },
+    {Modo Avião: false, Bluetooth: false, Wifi Status Int.: false, Wifi Rede Conectada: false, Hotspot Presença: false, Hotspot Internet: false, Lat: -12.98838625755021, Lng: -38.49881802384573, accuracy: 65.0, heading: 0.0, speed: -1.0, speed accuracy: -1.0, altitude: 36.36845779418945, timestamp: 2019-10-17 17: 20: 03.711Z
+    },
+    {Modo Avião: false, Bluetooth: false, Wifi Status Int.: false, Wifi Rede Conectada: false, Hotspot Presença: false, Hotspot Internet: false, Lat: -12.988460897794852, Lng: -38.498711131194895, accuracy: 65.0, heading: 0.0, speed: -1.0, speed accuracy: -1.0, altitude: 36.23190689086914, timestamp: 2019-10-17 17: 20: 10.493Z
+    },
+    {Modo Avião: false, Bluetooth: false, Wifi Status Int.: false, Wifi Rede Conectada: false, Hotspot Presença: false, Hotspot Internet: false, Lat: -12.988266755289931, Lng: -38.498661768830885, accuracy: 65.0, heading: 0.0, speed: -1.0, speed accuracy: -1.0, altitude: 36.32118225097656, timestamp: 2019-10-17 17: 20: 16.911Z
+    },
+    {Modo Avião: false, Bluetooth: false, Wifi Status Int.: false, Wifi Rede Conectada: false, Hotspot Presença: false, Hotspot Internet: false, Lat: -12.988429749661519, Lng: -38.49866960827803, accuracy: 65.0, heading: 0.0, speed: -1.0, speed accuracy: -1.0, altitude: 36.30455780029297, timestamp: 2019-10-17 17: 20: 23.343Z
+    },
+    {Modo Avião: false, Bluetooth: false, Wifi Status Int.: false, Wifi Rede Conectada: false, Hotspot Presença: false, Hotspot Internet: false, Lat: -12.988264882071636, Lng: -38.49877949998701, accuracy: 65.0, heading: 0.0, speed: -1.0, speed accuracy: -1.0, altitude: 36.40190124511719, timestamp: 2019-10-17 17: 20: 29.763Z
+    },
+    {Modo Avião: false, Bluetooth: false, Wifi Status Int.: false, Wifi Rede Conectada: false, Hotspot Presença: false, Hotspot Internet: false, Lat: -12.988334873545597, Lng: -38.49875881855885, accuracy: 65.0, heading: 0.0, speed: -1.0, speed accuracy: -1.0, altitude: 36.48188400268555, timestamp: 2019-10-17 17: 20: 36.198Z
+    },
+    {Modo Avião: false, Bluetooth: false, Wifi Status Int.: false, Wifi Rede Conectada: false, Hotspot Presença: false, Hotspot Internet: false, Lat: -12.988396345416907, Lng: -38.49871339912159, accuracy: 65.0, heading: 0.0, speed: -1.0, speed accuracy: -1.0, altitude: 36.158050537109375, timestamp: 2019-10-17 17: 20: 42.628Z
+    },
+    {Modo Avião: false, Bluetooth: false, Wifi Status Int.: false, Wifi Rede Conectada: false, Hotspot Presença: false, Hotspot Internet: false, Lat: -12.988446041387805, Lng: -38.49878488351003, accuracy: 65.0, heading: 0.0, speed: -1.0, speed accuracy: -1.0, altitude: 36.25630187988281, timestamp: 2019-10-17 17: 20: 49.063Z
+    },
+    {Modo Avião: false, Bluetooth: false, Wifi Status Int.: false, Wifi Rede Conectada: false, Hotspot Presença: false, Hotspot Internet: false, Lat: -12.988326679399643, Lng: -38.49883021008598, accuracy: 65.0, heading: 0.0, speed: -1.0, speed accuracy: -1.0, altitude: 36.34903335571289, timestamp: 2019-10-17 17: 20: 55.501Z
+    },
+    {Modo Avião: false, Bluetooth: false, Wifi Status Int.: false, Wifi Rede Conectada: false, Hotspot Presença: false, Hotspot Internet: false, Lat: -12.98839539748626, Lng: -38.49885084374078, accuracy: 65.0, heading: 0.0, speed: -1.0, speed accuracy: -1.0, altitude: 36.28909683227539, timestamp: 2019-10-17 17: 21: 04.965Z
+    },
+    {Modo Avião: false, Bluetooth: false, Wifi Status Int.: false, Wifi Rede Conectada: false, Hotspot Presença: false, Hotspot Internet: false, Lat: -12.988375425474167, Lng: -38.498803363479354, accuracy: 65.0, heading: 0.0, speed: -1.0, speed accuracy: -1.0, altitude: 36.38214111328125, timestamp: 2019-10-17 17: 21: 11.394Z
+    },
+    {Modo Avião: false, Bluetooth: false, Wifi Status Int.: false, Wifi Rede Conectada: false, Hotspot Presença: false, Hotspot Internet: false, Lat: -12.988511068260646, Lng: -38.49874875394719, accuracy: 65.0, heading: 0.0, speed: -1.0, speed accuracy: -1.0, altitude: 36.11720275878906, timestamp: 2019-10-17 17: 21: 17.823Z
+    },
+    {Modo Avião: false, Bluetooth: false, Wifi Status Int.: false, Wifi Rede Conectada: false, Hotspot Presença: false, Hotspot Internet: false, Lat: -12.988364291600094, Lng: -38.49873209634828, accuracy: 65.0, heading: 0.0, speed: -1.0, speed accuracy: -1.0, altitude: 36.0462532043457, timestamp: 2019-10-17 17: 21: 24.265Z
+    },
+    {Modo Avião: false, Bluetooth: false, Wifi Status Int.: false, Wifi Rede Conectada: false, Hotspot Presença: false, Hotspot Internet: false, Lat: -12.988424414080361, Lng: -38.49871319237524, accuracy: 65.0, heading: 0.0, speed: -1.0, speed accuracy: -1.0, altitude: 35.87520980834961, timestamp: 2019-10-17 17: 21: 30.694Z
+    },
+    {Modo Avião: false, Bluetooth: false, Wifi Status Int.: false, Wifi Rede Conectada: false, Hotspot Presença: false, Hotspot Internet: false, Lat: -12.988359451247637, Lng: -38.49878320468524, accuracy: 65.0, heading: 0.0, speed: -1.0, speed accuracy: -1.0, altitude: 36.0185546875, timestamp: 2019-10-17 17: 21: 38.148Z
+    },
+    {Modo Avião: false, Bluetooth: false, Wifi Status Int.: false, Wifi Rede Conectada: false, Hotspot Presença: false, Hotspot Internet: false, Lat: -12.988418985914189, Lng: -38.49879623982878, accuracy: 65.0, heading: 0.0, speed: -1.0, speed accuracy: -1.0, altitude: 36.00149917602539, timestamp: 2019-10-17 17: 21: 44.582Z
+    },
+    {Modo Avião: false, Bluetooth: false, Wifi Status Int.: false, Wifi Rede Conectada: false, Hotspot Presença: false, Hotspot Internet: false, Lat: -12.988405116545612, Lng: -38.498754621666556, accuracy: 65.0, heading: 0.0, speed: -1.0, speed accuracy: -1.0, altitude: 36.07335662841797, timestamp: 2019-10-17 17: 21: 50.609Z
+    },
+    {Modo Avião: false, Bluetooth: false, Wifi Status Int.: false, Wifi Rede Conectada: false, Hotspot Presença: false, Hotspot Internet: false, Lat: -12.988320743268636, Lng: -38.49877592759547, accuracy: 65.0, heading: 0.0, speed: -1.0, speed accuracy: -1.0, altitude: 36.19117736816406, timestamp: 2019-10-17 17: 21: 57.049Z
+    },
+    {Modo Avião: false, Bluetooth: false, Wifi Status Int.: false, Wifi Rede Conectada: false, Hotspot Presença: false, Hotspot Internet: false, Lat: -12.988381339689397, Lng: -38.49883852895615, accuracy: 65.0, heading: 0.0, speed: -1.0, speed accuracy: -1.0, altitude: 36.3796501159668, timestamp: 2019-10-17 17: 22: 03.478Z
+    },
+    {Modo Avião: false, Bluetooth: false, Wifi Status Int.: false, Wifi Rede Conectada: false, Hotspot Presença: false, Hotspot Internet: false, Lat: -12.988306220329115, Lng: -38.498812728638946, accuracy: 65.0, heading: 0.0, speed: -1.0, speed accuracy: -1.0, altitude: 36.46220779418945, timestamp: 2019-10-17 17: 22: 09.907Z
+    },
+    {Modo Avião: false, Bluetooth: false, Wifi Status Int.: false, Wifi Rede Conectada: false, Hotspot Presença: false, Hotspot Internet: false, Lat: -12.988292624241893, Lng: -38.498776820178186, accuracy: 65.0, heading: 0.0, speed: -1.0, speed accuracy: -1.0, altitude: 36.522621154785156, timestamp: 2019-10-17 17: 22: 16.627Z
+    },
+    {Modo Avião: false, Bluetooth: false, Wifi Status Int.: false, Wifi Rede Conectada: false, Hotspot Presença: false, Hotspot Internet: false, Lat: -12.988640928329309, Lng: -38.49870929624924, accuracy: 65.0, heading: 0.0, speed: -1.0, speed accuracy: -1.0, altitude: 34.144222259521484, timestamp: 2019-10-17 17: 41: 14.873Z
+    },
+    {Modo Avião: false, Bluetooth: false, Wifi Status Int.: false, Wifi Rede Conectada: false, Hotspot Presença: false, Hotspot Internet: false, Lat: -12.988658123246816, Lng: -38.49870012265491, accuracy: 65.0, heading: 0.0, speed: -1.0, speed accuracy: -1.0, altitude: 34.243492126464844, timestamp: 2019-10-17 17: 42: 20.451Z
+    },
+    {Modo Avião: true, Bluetooth: false, Wifi Status Int.: false, Wifi Rede Conectada: false, Hotspot Presença: false, Hotspot Internet: false, Lat: -12.988640843537379, Lng: -38.49874287815286, accuracy: 65.0, heading: 0.0, speed: -1.0, speed accuracy: -1.0, altitude: 34.24290084838867, timestamp: 2019-10-17 17: 45: 22.498Z
+    },
+    {Modo Avião: true, Bluetooth: false, Wifi Status Int.: false, Wifi Rede Conectada: false, Hotspot Presença: false, Hotspot Internet: false, Lat: -12.988640843537379, Lng: -38.49874287815286, accuracy: 65.0, heading: 0.0, speed: -1.0, speed accuracy: -1.0, altitude: 34.24290084838867, timestamp: 2019-10-17 17: 45: 31.498Z
+    }
+]

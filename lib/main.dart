@@ -86,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text('Location'),
+        title: Text('Location Teste'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.restore_page),
@@ -187,7 +187,7 @@ class _MyHomePageState extends State<MyHomePage> {
               children: <Widget>[
                 RaisedButton(
                   child: Text('Iniciar'),
-                  onPressed: () => _getLiveLocation(3),
+                  onPressed: () => _getCurrentLocation(3),
                   color: Colors.blueAccent,
                 ),
                 SizedBox(
@@ -208,37 +208,48 @@ class _MyHomePageState extends State<MyHomePage> {
                 // ),
               ],
             ),
-            // Text(
-            //   'Posição Atual',
-            //   style: TextStyle(fontWeight: FontWeight.bold),
-            // ),
-            // if (_currentPosition != null)
-            //   Text(
-            //     'Lat: ${_currentPosition.latitude}, Lng: ${_currentPosition.longitude}',
-            //   ),
-            // if (_currentPosition != null)
-            //   Text('Accuracy: ${_currentPosition.accuracy}'),
-            // if (_currentPosition != null)
-            //   Text('Heading: ${_currentPosition.heading}'),
-            // if (_currentPosition != null)
-            //   Text('Speed: ${_currentPosition.speed}'),
-            // if (_currentPosition != null)
-            //   Text('Speed Accuracy: ${_currentPosition.speedAccuracy}'),
-            // if (_currentPosition != null)
-            //   Text('Altitude: ${_currentPosition.altitude}'),
-            // if (_currentPosition != null)
-            //   Text('TimeStamp ${_currentPosition.timestamp}'),
-            // SizedBox(
-            //   height: 80,
-            // ),
-            Text('Live Position', style: TextStyle(fontWeight: FontWeight.bold),),
-            if(_livePosition != null) Text('Lat: ${_livePosition.latitude.toString()}, Lng: ${_livePosition.longitude.toString()}'),
-            if(_livePosition != null) Text('Accuracy: ${_livePosition.accuracy}'),
-            if(_livePosition != null) Text('Heading: ${_livePosition.heading}'),
-            if(_livePosition != null) Text('Speed: ${_livePosition.speed}'),
-            if(_livePosition != null) Text('Speed Accuracy: ${_livePosition.speedAccuracy}'),
-            if(_livePosition != null) Text('Altitude: ${_livePosition.altitude}'),
-            if(_livePosition != null) Text('TimeStamp ${_livePosition.timestamp}'),
+            Text(
+              'Posição Atual',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            if (_currentPosition != null)
+              Text(
+                'Lat: ${_currentPosition.latitude}, Lng: ${_currentPosition.longitude}',
+              ),
+            if (_currentPosition != null)
+              Text('Accuracy: ${_currentPosition.accuracy}'),
+            if (_currentPosition != null)
+              Text('Heading: ${_currentPosition.heading}'),
+            if (_currentPosition != null)
+              Text('Speed: ${_currentPosition.speed}'),
+            if (_currentPosition != null)
+              Text('Speed Accuracy: ${_currentPosition.speedAccuracy}'),
+            if (_currentPosition != null)
+              Text('Altitude: ${_currentPosition.altitude}'),
+            if (_currentPosition != null)
+              Text('TimeStamp ${_currentPosition.timestamp}'),
+            SizedBox(
+              height: 80,
+            ),
+            Text(
+              'Live Position',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            if (_livePosition != null)
+              Text(
+                  'Lat: ${_livePosition.latitude.toString()}, Lng: ${_livePosition.longitude.toString()}'),
+            if (_livePosition != null)
+              Text('Accuracy: ${_livePosition.accuracy}'),
+            if (_livePosition != null)
+              Text('Heading: ${_livePosition.heading}'),
+            if (_livePosition != null)
+              Text('Speed: ${_livePosition.speed}'),
+            if (_livePosition != null)
+              Text('Speed Accuracy: ${_livePosition.speedAccuracy}'),
+            if (_livePosition != null)
+              Text('Altitude: ${_livePosition.altitude}'),
+            if (_livePosition != null)
+              Text('TimeStamp ${_livePosition.timestamp}'),
             //  Row(
             //    mainAxisAlignment: MainAxisAlignment.center,
             //   children: <Widget>[
@@ -279,6 +290,10 @@ class _MyHomePageState extends State<MyHomePage> {
     final Geolocator geolocator = Geolocator();
     var locationAccuracy = _setAccuracy(accuracy);
 
+    setState(() {
+      _currentPosition = null;
+    });
+
     geolocator
         .getCurrentPosition(desiredAccuracy: locationAccuracy)
         .then((Position position) {
@@ -316,8 +331,8 @@ class _MyHomePageState extends State<MyHomePage> {
     print("Apertou Live Location");
     final Geolocator geolocator = Geolocator();
     var locationAccuracy = _setAccuracy(accuracy);
-    var locationOptions =
-        LocationOptions(accuracy: locationAccuracy, distanceFilter: 1, timeInterval: 5);
+    var locationOptions = LocationOptions(
+        accuracy: locationAccuracy, distanceFilter: 0, timeInterval: 5);
 
     positionStream = geolocator
         .getPositionStream(locationOptions)
@@ -417,7 +432,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _resetList() {
-    _dataList = [];
+    setState(() {
+      _dataList = [];
+    });
+    _saveData();
   }
 
   Future<void> _neverSatisfied(e) async {
@@ -430,7 +448,7 @@ class _MyHomePageState extends State<MyHomePage> {
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                Text(e),
+                Text(e.toString()),
               ],
             ),
           ),
