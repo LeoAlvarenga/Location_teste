@@ -53,6 +53,8 @@ class _MyHomePageState extends State<MyHomePage> {
   var _currentPosition;
   var _livePosition;
   var _geoStatus;
+  var _registros = 0;
+  var _registrosLive = 0;
 
   bool _modoAviao = false;
   bool _bluetooth = false;
@@ -198,6 +200,16 @@ class _MyHomePageState extends State<MyHomePage> {
                   onPressed: _destroyLiveLocationSubscribe,
                   color: Colors.red,
                 ),
+                SizedBox(
+                  width: 20,
+                ),
+                Chip(
+                  avatar: CircleAvatar(
+                    backgroundColor: Colors.blueAccent,
+                    child: Text(_registros.toString()),
+                  ),
+                  label: Text('Registros'),
+                )
                 // RaisedButton(
                 //   child: Text('Best'),
                 //   onPressed: _getCurrentLocation(2),
@@ -250,35 +262,42 @@ class _MyHomePageState extends State<MyHomePage> {
               Text('Altitude: ${_livePosition.altitude}'),
             if (_livePosition != null)
               Text('TimeStamp ${_livePosition.timestamp}'),
-            //  Row(
-            //    mainAxisAlignment: MainAxisAlignment.center,
-            //   children: <Widget>[
-            //     RaisedButton(
-            //       child: Text('High'),
-            //       onPressed: _getLiveLocation(1),
-            //     ),
-            //     RaisedButton(
-            //       child: Text('Best'),
-            //       onPressed: _getLiveLocation(2),
-            //     ),
-            //     RaisedButton(
-            //       child: Text('BFN'),
-            //       onPressed: _getLiveLocation(3),
-            //     ),
-            //   ],
-            // ),
-            //     Text('Status', style: TextStyle(fontWeight: FontWeight.bold),),
-            //     if(_geoStatus != null)
-            //       Text(_geoStatus),
-            //       RaisedButton(
-            //         child: Text('Get Status'),
-            //         onPressed: _getStatus(),
-            //       )
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                RaisedButton(
+                  child: Text('Iniciar'),
+                  onPressed: () => _getLiveLocation(3),
+                  color: Colors.blueAccent,
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                RaisedButton(
+                  child: Text('Parar'),
+                  onPressed: _destroyLiveLocationSubscribe,
+                  color: Colors.red,
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                Chip(
+                  avatar: CircleAvatar(
+                    backgroundColor: Colors.blueAccent,
+                    child: Text(_registrosLive.toString()),
+                  ),
+                  label: Text('Registros Live'),
+                )
+              ],
+            ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _printJson,
+        onPressed: () {
+          _printJson();
+        },
         tooltip: 'Increment',
         child: Icon(Icons.gps_fixed),
       ), // This trailing comma makes auto-formatting nicer for build methods.
@@ -300,10 +319,11 @@ class _MyHomePageState extends State<MyHomePage> {
       setState(() {
         _currentPosition = position;
         _addList(_currentPosition);
+        _registros++;
       });
     }).catchError((e) {
       print(e);
-      _neverSatisfied(e);
+      _neverSatisfied("ERRO",e);
     });
   }
 
@@ -323,7 +343,7 @@ class _MyHomePageState extends State<MyHomePage> {
       });
     }).catchError((e) {
       print(e);
-      _neverSatisfied(e);
+      _neverSatisfied("ERRO",e);
     });
   }
 
@@ -340,13 +360,19 @@ class _MyHomePageState extends State<MyHomePage> {
       setState(() {
         _livePosition = position;
         _addList(_livePosition);
+        _registrosLive++;
       });
     });
   }
 
   void _destroyLiveLocationSubscribe() {
     print("cancelando subscribe");
-    positionStream.cancel();
+    if(positionStream != null)
+      positionStream.cancel();
+    setState(() {
+      _registros = 0;
+      _registrosLive = 0;
+    });
   }
 
   // _getStatus() async {
@@ -436,15 +462,16 @@ class _MyHomePageState extends State<MyHomePage> {
       _dataList = [];
     });
     _saveData();
+    _neverSatisfied("Resetar","JSON resetado");
   }
 
-  Future<void> _neverSatisfied(e) async {
+  Future<void> _neverSatisfied(String titulo,e) async {
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Erro'),
+          title: Text(titulo),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
